@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,21 +20,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     private val coffeeTitle: TextView?
         get() = view?.findViewById(R.id.coffee_title)
     private val coffeeDesc: TextView?
         get() = view?.findViewById(R.id.coffee_desc)
 
+    private val backButton: Button?
+        get() = view?.findViewById(R.id.btn_back)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -47,6 +45,11 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
         setCoffeeData(coffeeId)
+
+        backButton?.setOnClickListener {
+            Navigation.createNavigateOnClickListener(R.id.back_to_list_action)
+                .onClick(it)
+        }
     }
 
 
@@ -63,6 +66,18 @@ class DetailFragment : Fragment() {
             R.id.latte -> {
                 coffeeTitle?.text = getString(R.string.latte_title)
                 coffeeDesc?.text = getString(R.string.latte_desc)
+            }
+            R.id.macchiato -> {
+                coffeeTitle?.text = getString(R.string.macchiato_title)
+                coffeeDesc?.text = getString(R.string.macchiato_desc)
+            }
+            R.id.piccolo -> {
+                coffeeTitle?.text = getString(R.string.piccolo_title)
+                coffeeDesc?.text = getString(R.string.piccolo_desc)
+            }
+            R.id.magic -> {
+                coffeeTitle?.text = getString(R.string.magic_title)
+                coffeeDesc?.text = getString(R.string.magic_desc)
             }
         }
     }

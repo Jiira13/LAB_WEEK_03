@@ -18,5 +18,9 @@
         android:id="@+id/coffeeDetail"
         android:name="com.jimmy.lab_week_03.DetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/back_to_list_action"
+            app:destination="@id/coffeeList" />
+    </fragment>
 </navigation>
